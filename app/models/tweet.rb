@@ -1,4 +1,6 @@
 class Tweet < ApplicationRecord
+  validates_length_of :description, maximum: 5
+
   has_many :replies, dependent: :destroy
   belongs_to :user
 

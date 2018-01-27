@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.includes(:user, :likes).all
 
-    @users = User.joins(:followers).group('following_id').order("COUNT(*) DESC")
+    @users = User.joins(:followers).group('following_id').order("COUNT(*) DESC").first(10)
 
     @tweet = Tweet.new
   end
