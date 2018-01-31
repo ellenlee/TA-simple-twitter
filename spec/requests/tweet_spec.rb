@@ -69,9 +69,47 @@ RSpec.describe 'Tweet', type: :request do
     end
 
     describe 'when failed' do
-      it 'will render index' do
+      it 'will redirect index' do
         expect(response).to redirect_to(assigns(:tweets))
       end
+    end
+  end
+
+  context '#like' do
+    before do
+      user
+      user_with_tweets
+      sign_in(user)
+      post '/tweets/1/like'
+    end
+
+    describe 'like first tweet' do
+      it 'will save like' do
+        expect(user.likes.count).to eq 1
+        expect(user.likes.first.tweet_id).to eq 1
+      end
+
+      it 'will redirect index' do
+        expect(response).to redirect_to tweets_path
+      end
+    end
+  end
+
+  context '#unlike' do
+    before do
+      user
+      user_with_tweets
+      sign_in(user)
+      Like.create(user_id: 1, tweet_id: 1)
+      post '/tweets/1/unlike'
+    end
+
+    it 'will delete like' do
+      expect(user.likes.count).to eq 0
+    end
+
+    it 'will redirect index' do
+      expect(response).to redirect_to tweets_path
     end
   end
 end
