@@ -4,6 +4,12 @@ FactoryBot.define do
     user
   end
 
+  factory :reply do
+    comment FFaker::Tweet.body
+    user
+    tweet
+  end
+
   factory :user do
     email FFaker::Internet.email
     password '123456'

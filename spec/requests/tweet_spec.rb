@@ -35,7 +35,7 @@ RSpec.describe 'Tweet', type: :request do
       end
 
       describe 'tweets behaviour' do
-        it 'will show all tweets' do
+        it 'will show 200' do
           expect(response).to have_http_status(200)
         end
 
