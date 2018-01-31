@@ -37,6 +37,12 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.include RequestSpecHelper, type: :request
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, type: type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
+    config.include ::Rails::Controller::Testing::Integration, type: type
+  end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
