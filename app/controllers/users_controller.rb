@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    byebug
     if @user.update(user_params)
       flash[:notice]="更新成功"
       redirect_to tweets_user_path(@user)
