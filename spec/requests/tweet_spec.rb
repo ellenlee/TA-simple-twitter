@@ -49,4 +49,29 @@ RSpec.describe 'Tweet', type: :request do
       end
     end
   end
+
+  context '#post' do
+    before do
+      user
+      sign_in(user)
+      post '/tweets', params: { tweet: { description: 'I am another tweet' } }
+    end
+
+    describe 'when successfully save' do
+      it 'will redirect to index' do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(assigns(:tweets))
+      end
+
+      it 'will create current users tweet' do
+        expect(Tweet.last.user).to eq user
+      end
+    end
+
+    describe 'when failed' do
+      it 'will render index' do
+        expect(response).to redirect_to(assigns(:tweets))
+      end
+    end
+  end
 end
