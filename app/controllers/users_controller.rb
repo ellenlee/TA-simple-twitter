@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     @followers = @user.followers
   end
 
+  def likes
+    @likes = @user.liked_tweets
+  end
+
   private
 
   def setup_user
