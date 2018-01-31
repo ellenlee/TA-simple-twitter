@@ -14,6 +14,7 @@ FactoryBot.define do
     email FFaker::Internet.email
     password '123456'
     name FFaker::Name.html_safe_last_name
+    role 'normal'
 
     factory :user_with_tweets do
       transient do
