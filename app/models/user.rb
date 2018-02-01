@@ -6,8 +6,12 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  # 需要 app/views/devise 裡找到樣板，加上 name 屬性
+  # 並參考 Devise 文件自訂表單後通過 Strong Parameters 的方法
+  # 注意有 sign_up 和 account_update 兩種情境要處理
   validates_presence_of :name
   validates_uniqueness_of :name
+  # 加上驗證 name 不能重覆 (關鍵字提示: uniqueness)
 
   has_many :tweets, dependent: :destroy
   has_many :replies, dependent: :destroy
