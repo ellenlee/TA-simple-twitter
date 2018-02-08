@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.main {
+  width: 70%;
+}
+
+.side {
+  width: 25%;
+  border-left: 1px solid #ccc;
+  padding-left: 15px;
+}

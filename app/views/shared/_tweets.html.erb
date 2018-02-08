@@ -1,5 +1,5 @@
 <% @tweets.each do |tweet| %>
-  <%= image_tag tweet.user.avatar.url %>
+  <%= image_tag tweet.user.avatar, size: "150x150" %>
   <%= link_to tweet.user.name, tweets_user_path(tweet.user) %>
   <%= tweet.created_at.strftime("%Y-%m-%d, %T") %>
   <%= tweet.description %>
@@ -9,4 +9,5 @@
   <% else %>
     <%= link_to "like(#{tweet.likes_count})", like_tweet_path(tweet), method: :post %>
   <% end %>
+  <hr>
 <% end %>
