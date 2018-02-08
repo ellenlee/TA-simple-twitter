@@ -20,15 +20,18 @@ class UsersController < ApplicationController
   end
 
   def followings
-    @followings = @user.followings.order('created_at DESC')
+    # @followings = @user.followings.order('created_at DESC')
+    @followings = @user.followships.order('created_at DESC')
   end
 
   def followers
-    @followers = @user.followers.order('created_at DESC')
+    @followings = @user.inverse_followships.order('created_at DESC')
+    # @followers = @user.followers.order('created_at DESC')
   end
 
   def likes
-    @likes = @user.liked_tweets.order('created_at DESC')
+    @likes = @user.likes.order(created_at: :desc)
+    # @likes = @user.liked_tweets.order('created_at DESC')
   end
 
   private
