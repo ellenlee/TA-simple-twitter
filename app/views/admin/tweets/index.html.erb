@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><%= link_to "Tweets", admin_tweets_path %></li>
+  <li role="presentation"><%= link_to "Users", admin_users_path %></li>
+</ul>
+
+<br>
+
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Tweets</th>
+    <th>Replies</th>
+    <th>Opt</th>
+  </tr>
+  <% @tweets.each do |tweet| %>
+    <tr>
+      <td><%= tweet.id %></td>
+      <td><%= tweet.description %></td>
+      <td>
+        <ul>
+          <% tweet.replies.each do |reply| %>
+            <li><%= reply.comment %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <%= link_to admin_tweet_path(tweet), method: :delete do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
