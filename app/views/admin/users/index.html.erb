@@ -15,9 +15,12 @@
 </p>
 <hr>
 
+<%= button_to "Bulk Delete" %><br>
+
 <div class="col-md-8">
   <table class="table table-bordered">
     <tr>
+      <th></th>
       <th>#</th>
       <th>Created_at</th>
       <th>Name</th>
@@ -29,6 +32,7 @@
     </tr>
     <% @users.each do |user| %>
     <tr>
+      <td><%= check_box_tag "ids[]", user.id, false %></td>
       <td><%= user.id %></td>
       <td><%= user.created_at.strftime('%F') %></td>
       <td><%= user.name %></td>
